@@ -16,5 +16,4 @@ public class JpaConfig {
     public AuditorAware<String> auditorAware() {
         return () -> Optional.of("uno"); // TODO: 스프링 시크리니도 인증 기능을 붙이게 될 때 수정하자
     }
-
 }
