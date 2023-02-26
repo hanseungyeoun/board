@@ -34,7 +34,6 @@ class ArticleControllerTest {
 
     }
 
-    @Disabled("구현중")
     @DisplayName("[view][GET] 게시글 상세 페이지 - 정상 호출")
     @Test
     void givenNothing_whenRequestingArticleView_thenReturnsArticleView() throws Exception {
@@ -56,6 +55,7 @@ class ArticleControllerTest {
                 .andExpect(view().name("articles/search"));
     }
 
+    @Disabled("구현중")
     @DisplayName("[view][GET] 게시글 해시태그 검색 페이지 - 정상 호출")
     @Test
     void givenNothing_whenRequestingArticleSearchHashtagView_thenReturnsArticleSearchHashtagView() throws Exception {
