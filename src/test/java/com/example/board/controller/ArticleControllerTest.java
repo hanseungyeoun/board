@@ -21,7 +21,6 @@ class ArticleControllerTest {
 
     private final MockMvc mvc;
 
-
     public ArticleControllerTest(@Autowired MockMvc mvc) {
         this.mvc = mvc;
     }

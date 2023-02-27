@@ -3,35 +3,33 @@ package com.example.board.domain;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
-
 @Getter
-@ToString
-@Table(
-        indexes = {
-                @Index(columnList = "title"),
-                @Index(columnList = "hashtag"),
-                @Index(columnList = "createdAt"),
-                @Index(columnList = "createdBy"),
-        }
-)
-@EntityListeners(AuditingEntityListener.class)
+@ToString(callSuper = true)
+@Table(indexes = {
+        @Index(columnList = "title"),
+        @Index(columnList = "hashtag"),
+        @Index(columnList = "createdAt"),
+        @Index(columnList = "createdBy")
+})
 @Entity
-public class Article extends AuditingFields{
+public class Article extends AuditingFields {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter @Column(nullable = false)  private String title;
-    @Setter @Column(nullable = false, length = 10000)  private String content;
-    @Setter private String hashtag;
+    @Setter @ManyToOne(optional = false) private UserAccount userAccount; // 유저 정보 (ID)
+
+    @Setter @Column(nullable = false) private String title; // 제목
+    @Setter @Column(nullable = false, length = 10000) private String content; // 본문
+
+    @Setter private String hashtag; // 해시태그
 
     @ToString.Exclude
     @OrderBy("createdAt DESC")
@@ -39,22 +37,17 @@ public class Article extends AuditingFields{
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 
 
-
- /*   private @Column(nullable = false) LocalDateTime createdAt;
-    private @Column(nullable = false, length = 100) String createdBy;
-    private @Column(nullable = false) LocalDateTime modifiedAt;
-    private @Column(nullable = false, length = 100) String modifiedBy;*/
-
     protected Article() {}
 
-    private Article(String title, String content, String hashtag) {
+    private Article(UserAccount userAccount, String title, String content, String hashtag) {
+        this.userAccount = userAccount;
         this.title = title;
         this.content = content;
         this.hashtag = hashtag;
     }
 
-    public static Article of(String title, String content, String hashtag) {
-        return new Article(title, content, hashtag);
+    public static Article of(UserAccount userAccount, String title, String content, String hashtag) {
+        return new Article(userAccount, title, content, hashtag);
     }
 
     @Override
@@ -68,4 +61,5 @@ public class Article extends AuditingFields{
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }
