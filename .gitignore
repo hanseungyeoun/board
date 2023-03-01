@@ -1,6 +1,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/java,intellij+all,gradle,macos,windows,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,intellij+all,gradle,macos,windows,visualstudiocode
-/bin/*
+/bin/**
 ### Querydsl
 /src/main/generated
 
