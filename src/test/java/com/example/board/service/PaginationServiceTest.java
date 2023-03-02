@@ -20,7 +20,7 @@ class PaginationServiceTest {
 
     private final PaginationService sut;
 
-    PaginationServiceTest(@Autowired PaginationService paginationService) {
+    public PaginationServiceTest(@Autowired PaginationService paginationService) {
         this.sut = paginationService;
     }
 

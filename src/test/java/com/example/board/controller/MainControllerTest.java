@@ -1,7 +1,5 @@
 package com.example.board.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.example.board.config.SecurityConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

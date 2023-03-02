@@ -18,13 +18,12 @@ public interface ArticleRepository extends
         JpaRepository<Article, Long>,
         ArticleRepositoryCustom,
         QuerydslPredicateExecutor<Article>,
-        QuerydslBinderCustomizer<QArticle>
-{
+        QuerydslBinderCustomizer<QArticle> {
 
     Page<Article> findByTitleContaining(String title, Pageable pageable);
     Page<Article> findByContentContaining(String content, Pageable pageable);
     Page<Article> findByUserAccount_UserIdContaining(String userId, Pageable pageable);
-    Page<Article> findByUserAccount_NicknameContaining(String userId, Pageable pageable);
+    Page<Article> findByUserAccount_NicknameContaining(String nickname, Pageable pageable);
     Page<Article> findByHashtag(String hashtag, Pageable pageable);
 
     @Override
@@ -37,5 +36,5 @@ public interface ArticleRepository extends
         bindings.bind(root.createdAt).first(DateTimeExpression::eq);
         bindings.bind(root.createdBy).first(StringExpression::containsIgnoreCase);
     }
-}
 
+}
