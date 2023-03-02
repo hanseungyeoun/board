@@ -1,8 +1,7 @@
-package com.example.board.dto.reponse;
+package com.example.board.dto.response;
 
 import com.example.board.dto.ArticleDto;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public record ArticleResponse(
@@ -35,4 +34,5 @@ public record ArticleResponse(
                 nickname
         );
     }
+
 }

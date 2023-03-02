@@ -1,9 +1,7 @@
-package com.example.board.dto.reponse;
-
+package com.example.board.dto.response;
 
 import com.example.board.dto.ArticleCommentDto;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public record ArticleCommentResponse(
