@@ -72,7 +72,7 @@ public class ArticleService {
                 article.setHashtag(dto.hashtag());
             }
         } catch (EntityNotFoundException e) {
-            log.warn("게시글 업데이트 실패. 게시글을 수정하는데 필요한 정볼를 찾을 수 없습니다 - dto: {}", e.getLocalizedMessage());
+            log.warn("게시글 업데이트 실패. 게시글을 수정하는데 필요한 정보를 찾을 수 없습니다 - {}", e.getLocalizedMessage());
         }
     }
 

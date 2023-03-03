@@ -40,16 +40,12 @@ public class SecurityConfig {
     }
 
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
-    }
-
-    @Bean
     public UserDetailsService userDetailsService(UserAccountRepository userAccountRepository) {
-        return username -> userAccountRepository.findById(username)
+        return username -> userAccountRepository
+                .findById(username)
                 .map(UserAccountDto::from)
                 .map(BoardPrincipal::from)
-                .orElseThrow(() -> new UsernameNotFoundException("유저을 찾을수 없습니다. username : " + username));
+                .orElseThrow(() -> new UsernameNotFoundException("유저를 찾을 수 없습니다 - username: " + username));
     }
 
     @Bean
